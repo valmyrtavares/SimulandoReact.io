@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="vue">{{nome}}</p>
+    <p id="vue">{{numero}}</p>
+    <p id="vue">{{nacionalidade}}</p>
+
+    <script>
+      let text = document.querySelectorAll("#vue");
+      const datas = {
+        nome: "Valmyr Tavares",
+        numero: 123,
+        nacionalidade: "Frances",
+      };
+      dataCadastrada = Object.keys(datas);
+      paternData = /(?<={{)\w+/;
+
+      function captureData() {
+        let dataSearch;
+        let printData;
+        text.forEach((item, index) => {
+          dataSearch = item.innerHTML.match(paternData);
+          printData = dataCadastrada.filter(
+            (element) => element == dataSearch[0]
+          );
+          switch (printData[0]) {
+            case "nome":
+              item.innerHTML = datas.nome;
+              break;
+            case "numero":
+              item.innerHTML = datas.numero;
+              break;
+            case "nacionalidade":
+              item.innerHTML = datas.nacionalidade;
+              break;
+          }
+        });
+      }
+
+      captureData();
+    </script>
+  </body>
+</html>
